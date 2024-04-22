@@ -1,0 +1,105 @@
+-- THE ENTITIES
+-- TV Series
+-- Episodes
+-- Actors
+-- Directors
+-- Transmissions
+-- Company
+
+
+-- CREATE TABLE Company (
+--   Company_ID INT PRIMARY KEY,
+--   Name VARCHAR(255),
+--   Address VARCHAR(255)
+-- );
+-- INSERT INTO Company (Company_ID, Name, Address)
+-- VALUES
+--   (2, 'Beta Corp.', '456 Elm St.'),
+--   (3, 'Gamma Inc.', '789 Oak St.');
+  
+  SELECT*FROM Company;
+
+
+
+-- CREATE TABLE Director (
+--   Director_ID INT PRIMARY KEY,
+--   Name VARCHAR(255),
+--   Company_ID INT,
+--   FOREIGN KEY (Company_ID) REFERENCES Company(Company_ID)
+-- );
+
+
+-- -- INSERT INTO Director (Director_ID, Name, Company_ID)
+-- -- VALUES (1, 'Namuddu Mariam', 1);
+
+
+
+-- UPDATE Director
+-- SET Name = 'Namuddu Mariam', Company_ID = 1
+-- WHERE Director_ID = 1;
+
+
+
+-- CREATE TABLE Actor (
+--   Actor_ID INT PRIMARY KEY,
+--   Name VARCHAR(255),
+--   Company_ID INT,
+--   FOREIGN KEY (Company_ID) REFERENCES Company(Company_ID)
+-- );
+
+
+-- INSERT INTO Company (Company_ID, Name)
+-- VALUES (102, 'ABC Studios');
+
+-- INSERT INTO Actor (Actor_ID, Name, Company_ID)
+-- VALUES (1, 'namuddu mariam', 102);
+
+-- SELECT*FROM Actor;
+
+
+
+-- CREATE TABLE TV_Series (
+--   Series_ID INT PRIMARY KEY,
+--   Name VARCHAR(255),
+--   Company_ID INT,
+--   FOREIGN KEY (Company_ID) REFERENCES Company(Company_ID)
+-- );
+
+-- CREATE TABLE Episodes (
+--   Episode_ID INT PRIMARY KEY,
+--   Series_ID INT,
+--   Episode_Number INT,
+--   Title VARCHAR(255),
+--   FOREIGN KEY (Series_ID) REFERENCES TV_Series(Series_ID)
+-- );
+
+INSERT INTO Episodes (Episode_ID, Series_ID, Episode_Number, Title)
+VALUES 
+(1, 102, 1, 'Pilot'),
+(2, 102, 2, 'Episode 2'),
+(3, 102, 3, 'Episode 3');
+
+SELECT*FROM Episodes;
+
+-- CREATE TABLE Transmissions (
+--   Transmission_ID INT PRIMARY KEY,
+--   Episode_ID INT,
+--   Transmission_Date DATE,
+--   FOREIGN KEY (Episode_ID) REFERENCES Episodes(Episode_ID)
+-- );
+
+-- CREATE TABLE Participates (
+--   Actor_ID INT,
+--   Series_ID INT,
+--   FOREIGN KEY (Actor_ID) REFERENCES Actor(Actor_ID),
+--   FOREIGN KEY (Series_ID) REFERENCES TV_Series(Series_ID),
+--   PRIMARY KEY (Actor_ID, Series_ID)
+-- );
+
+-- CREATE TABLE Directs (
+--   Director_ID INT,
+--   Episode_ID INT,
+--   FOREIGN KEY (Director_ID) REFERENCES Director(Director_ID),
+--   FOREIGN KEY (Episode_ID) REFERENCES Episodes(Episode_ID),
+--   PRIMARY KEY (Director_ID, Episode_ID)
+-- );
